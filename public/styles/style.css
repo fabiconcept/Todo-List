@@ -1,0 +1,214 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    cursor: url(https://ani.cursors-4u.net/games/images16/gam1564.png);
+    transition: all .25s ease-in-out;
+}
+
+main {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+main .heading {
+    font-size: 2rem;
+    margin: 2rem 0;
+}
+
+main .form {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-end;
+}
+
+main .form .group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+main .form .group label {
+    font-size: .85rem;
+    font-weight: 600;
+}
+
+main .form .group input,
+main .form .group select {
+    padding: 1rem;
+}
+
+main .form .group select, main .form .group input[type=""] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-overflow: "";
+    position: relative;
+}
+
+main .form .group button {
+    padding: 1rem;
+    background-color: #0066ff;
+    border: 1px solid #000;
+    color: #fff;
+    cursor: pointer;
+}
+
+main .form .group button:active {
+    transform: scale(.9) rotate(5deg);
+    cursor: pointer;
+}
+
+.container {
+    display: grid;
+    width: 100%;
+    list-style: none;
+    gap: .5rem;
+    max-width: 40.5rem;
+    padding-inline: 1.75rem;
+    position: relative;
+}
+
+.container li {
+    display: grid;
+    grid-template-columns: auto 1fr 5rem;
+    align-items: center;
+    border: 1px solid transparent;
+    background-image: linear-gradient(to right, rgba(0, 30, 255, 0.05), rgba(0, 0, 0, 0.05));
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    position: relative;
+}
+
+.container:not(:has(li))::after {
+    content: "No task";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.container li.done {
+    border-color: rgba(0, 0, 0, 0.25);
+    background-color: rgba(255, 255, 255, 0.15);
+    box-shadow: none;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.05), rgba(255, 255, 255, 0.05));
+    transform: scale(.98);
+}
+
+.container li.pending {
+    border-color: rgba(1, 255, 149, 0.25);
+    background-image: linear-gradient(to right, rgba(102, 255, 0, 0.05), rgba(255, 255, 255, 0.05));
+}
+
+.container li.done * {
+    opacity: .5;
+}
+
+.container li.done::before{
+    width: 102%;
+}
+
+.container li::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    width: 0;
+    transform-origin: left;
+    transition-duration: .25s;
+    height: 2px;
+    background-color: #ff0000ae;
+}
+
+.trash {
+    position: fixed;
+    bottom: 10rem;
+    right: 10rem;
+    padding: 1rem;
+    border-radius: 50%;
+    height: 3rem;
+    width: 3rem;
+    aspect-ratio: 1/1;
+    display: grid;
+    place-content: center;
+    border: 2px solid #ff000033;
+    box-shadow: 0 0 50px #ff000011;
+    background-color: #ff000009;
+}
+
+.trash.dragOver {
+    border: 2px solid #ff000044;
+    box-shadow: 0 0 50px #ff000044;
+    background-color: #ff000044;
+    transform: scale(1.15) rotateX(10deg);
+}
+
+.trash:-moz-drag-over {
+    background-color: #0066ff;
+}
+
+.container li h4 {
+    padding: 1rem 1.5rem;
+    border-right: 1px solid rgba(0, 0, 0, 0.25);
+    text-transform: capitalize;
+}
+
+.container li span {
+    padding: 1rem 1.5rem;
+    border-right: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.container li span:nth-child(3) {
+    text-align: center;
+}
+
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #1a1a1a;
+        color: #ffffff;
+    }
+
+    .container li h4 {
+        padding: 1rem 1.5rem;
+        border-right: 1px solid rgba(255, 255, 255, 0.25);
+    }
+    
+    .container li span {
+        padding: 1rem 1.5rem;
+        border-right: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .container li.done {
+        border-color: rgba(255, 255, 255, 0.25);
+    }
+
+
+    .container li {
+        border-color: rgba(255, 255, 255, 0.25);
+        background-image: linear-gradient(to right, rgba(0, 30, 255, 0.05), rgba(0, 0, 0, 0.05));
+    }
+
+    input, select {
+        background-color: rgba(255, 255, 255, 0.05);
+        border: 1px solid;
+        color: #fff;
+    }
+    option {
+        color: #000;
+    }
+    
+    .container:not(:has(li))::after {
+        color: rgba(255, 255, 255, 0.5);
+    }
+}
